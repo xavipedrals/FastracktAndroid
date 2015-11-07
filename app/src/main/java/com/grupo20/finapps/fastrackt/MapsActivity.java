@@ -40,11 +40,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private SharedPreferences prefs;
 
 
-    private double[] getGPS() {
+    private Location getGPS() {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         List<String> providers = lm.getProviders(true);
 
         Location l = null;
+        Location aux = null;
 
         for (int i = providers.size() - 1; i > 0; i--) {
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -54,12 +55,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (l != null) break;
         }
 
-        double[] gps = new double[2];
         if(l != null){
-            gps[0] = l.getLatitude();
-            gps[1] = l.getLongitude();
+            aux = l;
         }
-        return gps;
+        return aux;
     }
 
     @Override
@@ -128,8 +127,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             Criteria criteria = new Criteria();
 
+            Location location = this.getGPS();
 
-            Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+            //Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
             if (location != null)
             {
                 Log.d("XAVI", "Hola");
