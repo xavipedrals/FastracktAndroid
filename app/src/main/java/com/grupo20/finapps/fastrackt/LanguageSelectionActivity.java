@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LanguageSelectionActivity extends AppCompatActivity {
@@ -26,6 +27,8 @@ public class LanguageSelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_selection);
 
+        ButterKnife.bind(this);
+
         catalan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,6 +36,8 @@ public class LanguageSelectionActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     @OnClick(R.id.imageViewCatalan)
     public void selectedCatalan() {
