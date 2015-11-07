@@ -27,6 +27,9 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.cardNumber)
     EditText cardNumber;
 
+    @Bind(R.id.doneIdentify)
+    ImageView doneIdentify;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +37,15 @@ public class LoginActivity extends AppCompatActivity {
         prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
 
         ButterKnife.bind(this);
+
+        doneIdentify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getIdentifyInfo(v);
+            }
+        });
     }
 
-    @OnClick(R.id.doneIdentify)
     public void getIdentifyInfo(ImageView imageView) {
         String owner = ownerName.getText().toString();
         String pin = cardPin.getText().toString();
