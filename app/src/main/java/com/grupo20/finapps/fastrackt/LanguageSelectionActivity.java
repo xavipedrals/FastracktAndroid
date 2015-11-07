@@ -9,15 +9,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import butterknife.Bind;
 import butterknife.OnClick;
 
 public class LanguageSelectionActivity extends AppCompatActivity {
 
     SharedPreferences prefs;
+
+    @Bind(R.id.imageViewCatalan)
+    ImageView catalan;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_selection);
+
+        catalan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedCatalan();
+            }
+        });
     }
 
     @OnClick(R.id.imageViewCatalan)
