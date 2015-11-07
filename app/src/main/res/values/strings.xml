@@ -3,4 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_map_pane">MapPane</string>
     <string name="title_activity_maps">Map</string>
+    <string name="design_import">Import</string>
+    <string name="ok">Withdraw</string>
+    <string name="cancel">Cancel</string>
 </resources>
