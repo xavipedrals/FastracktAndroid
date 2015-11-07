@@ -10,34 +10,52 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
     Button mapsButton;
+    ImageView imageViewEnglish, imageViewSpanish, imageViewCatalan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
-        mapsButton = (Button) findViewById(R.id.buttonMaps);
+        imageViewEnglish = (ImageView) findViewById(R.id.imageViewEnglish);
+        imageViewSpanish = (ImageView) findViewById(R.id.imageViewSpanish);
+        imageViewCatalan = (ImageView) findViewById(R.id.imageViewCatalan);
+
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+            }
+        };
+
+        imageViewEnglish.setOnClickListener(onClickListener);
+        imageViewCatalan.setOnClickListener(onClickListener);
+        imageViewSpanish.setOnClickListener(onClickListener);
+
+/*        mapsButton = (Button) findViewById(R.id.buttonMaps);
         mapsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, MapsActivity.class));
             }
         });
+        imageViewEnglish = (ImageView) findViewById(R.id.imageViewEnglish);*/
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
     }
 
     @Override

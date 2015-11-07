@@ -9,35 +9,29 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, JSONTransmitter.OnJsonTransmitionCompleted {
 
     private GoogleMap mMap;
     private Marker myMarker;
-
-
-    private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
-        @Override
-        public void onMyLocationChange(Location location) {
-            LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-            myMarker = mMap.addMarker(new MarkerOptions().position(loc));
-            if (myMarker != null){
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
-            }
-        }
-    };
 
 
     @Override
@@ -93,21 +87,72 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(new LatLng(location.getLatitude(), location.getLongitude()))      // Sets the center of the map to location user
-                        .zoom(17)                   // Sets the zoom
+                        .zoom(15)                   // Sets the zoom
                         .build();                   // Creates a CameraPosition from the builder
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                 mMap.setMyLocationEnabled(true);
 
             }
-
-            new RequestTask().execute();
+            JSONObject json = new JSONObject();
+            JSONTransmitter transmitter = new JSONTransmitter(this);
+            transmitter.execute(new JSONObject[]{json});
         }
 
     }
 
 
+    @Override
+    public void onTransmitionCompleted(JSONObject jsonObject) {
+        try {
+            JSONArray results = jsonObject.getJSONArray("results");
+            JSONObject office0 = results.getJSONObject(0);
+            Log.d("MAPS", office0.toString());
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(office0.getDouble("latitude"), office0.getDouble("longitude")))
+                    .title(office0.getString("name")))
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
 
 
+            JSONObject office1 = results.getJSONObject(1);
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(office1.getDouble("latitude"), office1.getDouble("longitude")))
+                    .title(office1.getString("name")))
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
 
 
+            JSONObject office2 = results.getJSONObject(2);
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(office2.getDouble("latitude"), office2.getDouble("longitude")))
+                    .title(office2.getString("name")))
+                .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
+
+            JSONObject office3 = results.getJSONObject(3);
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(office3.getDouble("latitude"), office3.getDouble("longitude")))
+                    .title(office3.getString("name")))
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
+
+            JSONObject office4 = results.getJSONObject(4);
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(office4.getDouble("latitude"), office4.getDouble("longitude")))
+                    .title(office4.getString("name")))
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
+
+            JSONObject office5 = results.getJSONObject(5);
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(office5.getDouble("latitude"), office5.getDouble("longitude")))
+                    .title(office5.getString("name")))
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
+
+            JSONObject office6 = results.getJSONObject(6);
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(office6.getDouble("latitude"), office6.getDouble("longitude")))
+                    .title(office6.getString("name")))
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
+            
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
