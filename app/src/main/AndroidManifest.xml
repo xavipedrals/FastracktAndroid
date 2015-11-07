@@ -43,6 +43,16 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" >
         </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".LanguageSelectionActivity"
+            android:label="@string/title_activity_language_selection"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
         <activity android:name=".Deadline">
 
         </activity>

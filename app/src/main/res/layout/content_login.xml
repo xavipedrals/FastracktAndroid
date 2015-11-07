@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:background="@color/colorBackground"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.grupo20.finapps.fastrackt.LoginActivity">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" android:weightSum="1">
+                <ImageView
+                        android:layout_width="377dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@mipmap/identify"
+                        android:layout_weight="0.05"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginBottom="10dp"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/ownerName"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="0.05" android:hint="Name"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:autoText="false" android:background="@drawable/rounded_edittext"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="15dp" android:textColor="#1e8dc4"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberPassword"
+                        android:ems="10"
+                        android:id="@+id/cardPin"
+                        android:layout_weight="0.05" android:hint="Card pin"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/rounded_edittext"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="15dp" android:textColor="#e8b12f"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/cardNumber"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="0.05"
+                        android:hint="Card number"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/rounded_edittext"
+                        android:paddingLeft="15dp" android:textColor="#cc5633"/>
+                <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/doneIdentify"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="0.11"
+                        android:background="@mipmap/done"
+                        android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+</RelativeLayout>
