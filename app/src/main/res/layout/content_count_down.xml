@@ -14,8 +14,30 @@
         tools:context="com.grupo20.finapps.fastrackt.CountDownActivity"
         android:background="#2b2c2c">
 
-        <TextView
+    <ImageView
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView3"
+                android:src="@mipmap/fastractcongelat"
+                android:paddingLeft="-20px" android:paddingTop="-20px"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="45dp"
+        android:paddingRight="45dp"
+        android:weightSum="3"
+        android:gravity="center">
+
+        <TextView
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="03"
@@ -25,29 +47,45 @@
             android:layout_centerVertical="true"
             android:layout_alignRight="@+id/imageView3"
             android:layout_alignEnd="@+id/imageView3"
-            android:layout_marginRight="57dp"
-            android:layout_marginEnd="57dp" />
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="47"
-                android:id="@+id/tvSec"
-            android:textColor="#ffffff"
-                android:textSize="65dp" android:textStyle="bold"
-            android:layout_alignTop="@+id/tvMin"
-            android:layout_toRightOf="@+id/tvMin"
-            android:layout_toEndOf="@+id/tvMin" />
+            android:layout_weight="1"
+            android:textAlignment="center" />
 
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView3"
-                android:src="@mipmap/fastractcongelat"
-                android:paddingLeft="-20px" android:paddingTop="-20px"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=":"
+            android:id="@+id/tvDosPunts"
+            android:textColor="#ffffff"
+            android:textSize="65dp" android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:textAlignment="gravity"
+            android:layout_gravity="center"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="47"
+                    android:id="@+id/tvSec"
+                android:textColor="#ffffff"
+                    android:textSize="65dp" android:textStyle="bold"
+                android:layout_alignTop="@+id/tvMin"
+                android:layout_toRightOf="@+id/tvMin"
+                android:layout_toEndOf="@+id/tvMin"
+                android:layout_marginLeft="-10dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
 
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:id="@+id/progress"
@@ -59,6 +97,20 @@
             android:layout_below="@+id/tvMin"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="78dp" />
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="15dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView4"
+            android:src="@mipmap/yourcode"
+            android:layout_gravity="center"
+            android:layout_marginBottom="130dp" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>

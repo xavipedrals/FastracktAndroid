@@ -42,7 +42,7 @@ public class CountDownActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        progress.getProgressDrawable().setColorFilter(Color.argb(0, 204, 86, 51), PorterDuff.Mode.SRC_IN);
+        progress.getProgressDrawable().setColorFilter(Color.parseColor("#1E8DC4"), PorterDuff.Mode.SRC_IN);
 
         progress.setMax(100);
 

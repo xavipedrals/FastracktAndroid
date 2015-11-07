@@ -129,6 +129,8 @@ public class LoginActivity extends AppCompatActivity {
                         else {
                             mostraToast("Hi ha hagut un error del servidor en enviar les dades");
                         }
+                    } else {
+                        mostraToast("El servidor no respon");
                     }
 
                 } catch(Exception e) {
