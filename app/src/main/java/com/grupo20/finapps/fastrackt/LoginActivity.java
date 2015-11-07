@@ -1,6 +1,7 @@
 package com.grupo20.finapps.fastrackt;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -59,12 +60,14 @@ public class LoginActivity extends AppCompatActivity {
 
         boolean valid = sendDataToServer(owner, number, pin);
 
-        if (isValid("owner", owner) && isValid("pin", pin) && isValid("number", number)) {
+        if (valid) {
             SharedPreferences.Editor editor = prefs.edit();
 
             editor.putString("ownerName", owner);
             editor.putString("number", number);
             editor.apply();
+
+            startActivity(new Intent(LoginActivity.this, MapsActivity.class));
         }
         else {
             // Mostrar error
@@ -72,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean sendDataToServer(String owner, String number, String pin) {
-        return false;
+        return true;
     }
 
     private boolean isValid(String input, String valor) {

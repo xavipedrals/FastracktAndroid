@@ -36,7 +36,7 @@ public class AfterMain extends AppCompatActivity {
     }
 
     private void redirectActivity() {
-        if (prefs.getString("language", "").equals("")) {
+        if (prefs.getString("lang", "").equals("")) {
             startActivity(new Intent(AfterMain.this, LanguageSelectionActivity.class));
         }
         else {

@@ -55,6 +55,10 @@
             android:label="@string/title_activity_maps" >
         </activity>
         <activity
+            android:name=".AfterMain"
+            android:label="Aftermain" >
+        </activity>
+        <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" >

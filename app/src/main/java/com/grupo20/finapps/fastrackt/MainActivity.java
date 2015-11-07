@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
 
-        redirectActivity();
     }
 
     private void redirectActivity() {
