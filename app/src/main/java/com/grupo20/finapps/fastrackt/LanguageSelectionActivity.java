@@ -1,5 +1,6 @@
 package com.grupo20.finapps.fastrackt;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,11 +22,19 @@ public class LanguageSelectionActivity extends AppCompatActivity {
     @Bind(R.id.imageViewCatalan)
     ImageView catalan;
 
+    @Bind(R.id.imageViewSpanish)
+    ImageView spanish;
+
+    @Bind(R.id.imageViewEnglish)
+    ImageView english;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_selection);
+
+        prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
 
         ButterKnife.bind(this);
 
@@ -33,6 +42,20 @@ public class LanguageSelectionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedCatalan();
+            }
+        });
+
+        spanish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedSpanish();
+            }
+        });
+
+        english.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedEnglish();
             }
         });
     }
