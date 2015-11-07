@@ -95,7 +95,10 @@ public class DialogImport extends DialogFragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void onDataCorrect() {
+    private void onDataCorrect(String code) {
+        SharedPreferences.Editor edit = prefs.edit();
+
+        edit.putString("code", code).apply();
         //mostraToast("Correcte");
 
         startActivity(new Intent(getActivity().getApplicationContext(), CountDownActivity.class));
@@ -136,7 +139,7 @@ public class DialogImport extends DialogFragment {
                         }
                         else if (responseString.equals("CARD_ERROR")) mostraToast("Invalid card number!");
                         else {
-                            onDataCorrect();
+                            onDataCorrect(responseString);
                         }
                     }
 
