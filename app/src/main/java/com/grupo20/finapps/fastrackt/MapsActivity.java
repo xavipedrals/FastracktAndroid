@@ -2,6 +2,7 @@ package com.grupo20.finapps.fastrackt;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
@@ -13,7 +14,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,12 +28,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, JSONTransmitter.OnJsonTransmitionCompleted {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, JSONTransmitter.OnJsonTransmitionCompleted, RefreshFragment {
 
     private GoogleMap mMap;
     private Marker myMarker;
+    private Fragment f;
 
 
     @Override
@@ -75,6 +74,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         } else {
             mMap = googleMap;
+
+            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+
+                    DialogImport dialog = new DialogImport();
+                    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                    dialog.show(fragmentManager, "tag");
+                    //getData();
+
+                    /*AlertDialog.Builder builder = new AlertDialog.Builder();
+                    builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivity(new Intent(MapsActivity.this, Deadline.class));
+                        }
+                    });
+                    builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+                    //builder.setView(R.layout.dialog_import);
+
+                    AlertDialog dialog = builder.create();
+*/
+                    return true;
+                }
+            });
 /*            mMap.setMyLocationEnabled(true);
             CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
             mMap.animateCamera(zoom);*/
@@ -152,10 +179,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .position(new LatLng(office6.getDouble("latitude"), office6.getDouble("longitude")))
                     .title(office6.getString("name")))
                     .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
-            
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void onFinishDialog(boolean b) {
+        if (b) {
+/*            Bundle bundle = new Bundle();
+            bundle.putBoolean("refresh", true);
+            f = new DialogImport();
+            f.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerIdiomes,f,"gestio").commit();*/
+        }
     }
 }
