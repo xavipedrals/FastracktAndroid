@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import butterknife.OnClick;
 
@@ -39,6 +40,8 @@ public class LanguageSelectionActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putString("lang", language).apply();
+
+        Log.d("setLanguage", language);
 
         startActivity(new Intent(LanguageSelectionActivity.this, LoginActivity.class));
     }
