@@ -74,7 +74,7 @@ public class DialogImport extends DialogFragment {
             public void onClick(View v) {
                 importe = mEditText.getText().toString();
                 sendDataToServer(importe);
-                //startActivity(new Intent(getContext(), Deadline.class));
+
             }
         });
 
@@ -96,9 +96,9 @@ public class DialogImport extends DialogFragment {
     }
 
     private void onDataCorrect() {
-        mostraToast("Correcte");
+        //mostraToast("Correcte");
 
-        //startActivity(new Intent(LoginActivity.this, MapsActivity.class));
+        startActivity(new Intent(getActivity().getApplicationContext(), CountDownActivity.class));
     }
 
 
@@ -131,11 +131,12 @@ public class DialogImport extends DialogFragment {
                         InputStream in = response.getEntity().getContent(); //Get the data in the entity
                         String responseString = IOUtils.toString(in, "UTF-8");
                         Log.d("Response", responseString);
-                        if (responseString.equals("OK")) {
-                            onDataCorrect();
+                        if (responseString.equals("MONEY_ERROR")) {
+                            mostraToast("You do not have enough money!");
                         }
+                        else if (responseString.equals("CARD_ERROR")) mostraToast("Invalid card number!");
                         else {
-                            mostraToast("Hi ha hagut un error del servidor en enviar les dades");
+                            onDataCorrect();
                         }
                     }
 
