@@ -96,9 +96,9 @@ public class DialogImport extends DialogFragment {
     }
 
     private void onDataCorrect() {
-        mostraToast("Correcte");
+        //mostraToast("Correcte");
 
-        //startActivity(new Intent(LoginActivity.this, MapsActivity.class));
+        startActivity(new Intent(getActivity().getApplicationContext(), MapsActivity.class));
     }
 
 
