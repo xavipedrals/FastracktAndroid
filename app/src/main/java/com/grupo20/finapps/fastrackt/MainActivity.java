@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void redirectActivity() {
-        if (!prefs.getString("ownerName", "").equals("")) {
+        if (prefs.getString("ownerName", "").equals("")) {
             startActivity(new Intent(MainActivity.this, LanguageSelectionActivity.class));
         }
         else {
