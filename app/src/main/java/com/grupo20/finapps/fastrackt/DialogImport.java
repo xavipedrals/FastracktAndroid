@@ -1,7 +1,9 @@
 package com.grupo20.finapps.fastrackt;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -20,6 +23,8 @@ public class DialogImport extends DialogFragment {
 
     private EditText mEditText;
     private ImageView okImg, cancelImg;
+    private TextView lastBankTV;
+    private SharedPreferences prefs;
 
     public DialogImport() {
         // Empty constructor required for DialogFragment
@@ -35,6 +40,11 @@ public class DialogImport extends DialogFragment {
         mEditText = (EditText) view.findViewById(R.id.importEditText);
         okImg = (ImageView) view.findViewById(R.id.imageViewBOk);
         cancelImg = (ImageView) view.findViewById(R.id.imageViewBCancel);
+        lastBankTV = (TextView) view.findViewById(R.id.textViewLastBank);
+
+        prefs = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+        String banktName = prefs.getString("lastBankClicked", "Bank");
+        lastBankTV.setText(banktName);
 
         mEditText.requestFocus();
         getDialog().getWindow().setSoftInputMode(

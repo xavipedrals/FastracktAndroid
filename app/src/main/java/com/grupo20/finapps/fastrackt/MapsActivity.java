@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -33,6 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private Marker myMarker;
     private Fragment f;
+    private SharedPreferences prefs;
 
 
     @Override
@@ -79,32 +81,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public boolean onMarkerClick(Marker marker) {
 
+                    prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("lastBankClicked", marker.getTitle());
+                    editor.apply();
+
                     DialogImport dialog = new DialogImport();
                     android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
                     dialog.show(fragmentManager, "tag");
-                    //getData();
-
-                    /*AlertDialog.Builder builder = new AlertDialog.Builder();
-                    builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            startActivity(new Intent(MapsActivity.this, Deadline.class));
-                        }
-                    });
-                    builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User cancelled the dialog
-                        }
-                    });
-                    //builder.setView(R.layout.dialog_import);
-
-                    AlertDialog dialog = builder.create();
-*/
                     return true;
                 }
             });
-/*            mMap.setMyLocationEnabled(true);
-            CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
-            mMap.animateCamera(zoom);*/
 
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             Criteria criteria = new Criteria();

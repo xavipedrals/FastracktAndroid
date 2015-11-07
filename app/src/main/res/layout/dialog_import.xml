@@ -12,6 +12,16 @@
         android:contentDescription="@string/design_import"
         android:layout_marginBottom="15dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bank"
+        android:id="@+id/textViewLastBank"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:textColor="#ffffff" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +33,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:background="@drawable/rounded_edittext"
-        android:paddingLeft="15dp" android:textColor="#cc5633"
+        android:paddingLeft="15dp" android:textColor="#006400"
         android:layout_marginBottom="30dp" />
 
     <LinearLayout
