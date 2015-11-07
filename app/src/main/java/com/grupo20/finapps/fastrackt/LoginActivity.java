@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -49,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
     String owner;
     String number;
+    String pin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void setIdentifyInfo() {
         owner = ownerName.getText().toString();
-        String pin = cardPin.getText().toString();
+        pin = cardPin.getText().toString();
         number = cardNumber.getText().toString();
 
         sendDataToServer(owner, number, pin);
@@ -85,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
 
         editor.putString("ownerName", owner);
         editor.putString("number", number);
+        editor.putString("pin", pin);
         editor.apply();
 
         startActivity(new Intent(LoginActivity.this, MapsActivity.class));
@@ -110,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 try {
                     HttpPost post = new HttpPost(SERVER_URL);
-                    StringEntity se = new StringEntity( json);
+                    StringEntity se = new StringEntity(json);
                     se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
                     post.setEntity(se);
                     response = client.execute(post);
@@ -119,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(response!=null){
                         InputStream in = response.getEntity().getContent(); //Get the data in the entity
                         String responseString = IOUtils.toString(in, "UTF-8");
+                        Log.d("Response", responseString);
                         if (responseString.equals("OK")) {
                             onDataCorrect();
                         }
@@ -140,6 +144,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void sendDataToServer(String owner, String number, String pin) {
-        sendJson("{ 'owner': " + owner + ", 'number': " + number + ", 'pin': " + pin + " }");
+        Log.d("Hola Xavi", owner + " " + number + " " + pin);
+        String strJSON = "{ \"owner\": \"" + owner + "\", \"number\": \"" + number + "\", \"pin\": \"" + pin + "\" }";
+        Log.d("JSOOOOON", strJSON);
+        sendJson("{ \"owner\": \"" + owner + "\", \"number\": \"" + number + "\", \"pin\": \"" + pin + "\" }");
     }
 }

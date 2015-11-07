@@ -84,6 +84,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("lastBankClicked", marker.getTitle());
+                    LatLng aux = marker.getPosition();
+                    editor.putString("lastBankLat", String.valueOf(aux.latitude));
+                    editor.putString("lastBankLng", String.valueOf(aux.longitude));
                     editor.apply();
 
                     DialogImport dialog = new DialogImport();
@@ -127,45 +130,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office0.getDouble("latitude"), office0.getDouble("longitude")))
                     .title(office0.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittver));
 
 
             JSONObject office1 = results.getJSONObject(1);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office1.getDouble("latitude"), office1.getDouble("longitude")))
                     .title(office1.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittblau));
 
 
             JSONObject office2 = results.getJSONObject(2);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office2.getDouble("latitude"), office2.getDouble("longitude")))
                     .title(office2.getString("name")))
-                .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
+                .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittgr));
 
             JSONObject office3 = results.getJSONObject(3);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office3.getDouble("latitude"), office3.getDouble("longitude")))
                     .title(office3.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittblau));
 
             JSONObject office4 = results.getJSONObject(4);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office4.getDouble("latitude"), office4.getDouble("longitude")))
                     .title(office4.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittblau));
 
             JSONObject office5 = results.getJSONObject(5);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office5.getDouble("latitude"), office5.getDouble("longitude")))
                     .title(office5.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittver));
 
             JSONObject office6 = results.getJSONObject(6);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office6.getDouble("latitude"), office6.getDouble("longitude")))
                     .title(office6.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetitt));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittblau));
 
         } catch (JSONException e) {
             e.printStackTrace();
