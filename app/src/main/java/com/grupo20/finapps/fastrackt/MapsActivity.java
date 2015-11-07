@@ -29,7 +29,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, JSONTransmitter.OnJsonTransmitionCompleted, RefreshFragment {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, JSONTransmitter.OnJsonTransmitionCompleted {
 
     private GoogleMap mMap;
     private Marker myMarker;
@@ -102,6 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
             if (location != null)
             {
+                Log.d("XAVI", "Hola");
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                         new LatLng(location.getLatitude(), location.getLongitude()), 13));
 
@@ -130,60 +131,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office0.getDouble("latitude"), office0.getDouble("longitude")))
                     .title(office0.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittver));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcvermell));
 
 
             JSONObject office1 = results.getJSONObject(1);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office1.getDouble("latitude"), office1.getDouble("longitude")))
                     .title(office1.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittblau));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcgrocnou));
 
 
             JSONObject office2 = results.getJSONObject(2);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office2.getDouble("latitude"), office2.getDouble("longitude")))
                     .title(office2.getString("name")))
-                .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittgr));
+                .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcblau));
 
             JSONObject office3 = results.getJSONObject(3);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office3.getDouble("latitude"), office3.getDouble("longitude")))
                     .title(office3.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittblau));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcgrocnou));
 
             JSONObject office4 = results.getJSONObject(4);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office4.getDouble("latitude"), office4.getDouble("longitude")))
                     .title(office4.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittblau));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcblau));
 
             JSONObject office5 = results.getJSONObject(5);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office5.getDouble("latitude"), office5.getDouble("longitude")))
                     .title(office5.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittver));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcblau));
 
             JSONObject office6 = results.getJSONObject(6);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office6.getDouble("latitude"), office6.getDouble("longitude")))
                     .title(office6.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcadropetittblau));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcvermell));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-    }
-
-    @Override
-    public void onFinishDialog(boolean b) {
-        if (b) {
-/*            Bundle bundle = new Bundle();
-            bundle.putBoolean("refresh", true);
-            f = new DialogImport();
-            f.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().replace(R.id.containerIdiomes,f,"gestio").commit();*/
-        }
     }
 }
