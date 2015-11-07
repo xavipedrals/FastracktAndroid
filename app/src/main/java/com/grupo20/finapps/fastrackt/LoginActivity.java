@@ -38,30 +38,41 @@ public class LoginActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+
+        String currentName = prefs.getString("ownerName", "");
+        String currentNumber = prefs.getString("number", "");
+        ownerName.setText(currentName);
+        cardNumber.setText(currentNumber);
+
         doneIdentify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getIdentifyInfo();
+                setIdentifyInfo();
             }
         });
     }
 
-    public void getIdentifyInfo() {
+    public void setIdentifyInfo() {
         String owner = ownerName.getText().toString();
         String pin = cardPin.getText().toString();
         String number = cardNumber.getText().toString();
+
+        boolean valid = sendDataToServer(owner, number, pin);
 
         if (isValid("owner", owner) && isValid("pin", pin) && isValid("number", number)) {
             SharedPreferences.Editor editor = prefs.edit();
 
             editor.putString("ownerName", owner);
-            editor.putString("pin", pin);
             editor.putString("number", number);
             editor.apply();
         }
         else {
             // Mostrar error
         }
+    }
+
+    private boolean sendDataToServer(String owner, String number, String pin) {
+        return false;
     }
 
     private boolean isValid(String input, String valor) {

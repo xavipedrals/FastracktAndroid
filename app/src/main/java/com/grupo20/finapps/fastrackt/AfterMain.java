@@ -36,11 +36,11 @@ public class AfterMain extends AppCompatActivity {
     }
 
     private void redirectActivity() {
-        if (prefs.getString("ownerName", "").equals("")) {
+        if (prefs.getString("language", "").equals("")) {
             startActivity(new Intent(AfterMain.this, LanguageSelectionActivity.class));
         }
         else {
-            startActivity(new Intent(AfterMain.this, MapsActivity.class));
+            startActivity(new Intent(AfterMain.this, LoginActivity.class));
         }
     }
 
