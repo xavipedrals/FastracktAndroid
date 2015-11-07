@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 /**
@@ -18,7 +19,7 @@ import android.widget.Toast;
 public class DialogImport extends DialogFragment {
 
     private EditText mEditText;
-    private Button okButton, cancelButton;
+    private ImageView okImg, cancelImg;
 
     public DialogImport() {
         // Empty constructor required for DialogFragment
@@ -30,23 +31,23 @@ public class DialogImport extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.afegir_idioma, container);
-        mEditText = (EditText) view.findViewById(R.id.design_import);
-        okButton = (Button) view.findViewById(R.id.okButton);
-        cancelButton = (Button) view.findViewById(R.id.cancelButton);
+        View view = inflater.inflate(R.layout.dialog_import, container);
+        mEditText = (EditText) view.findViewById(R.id.importEditText);
+        okImg = (ImageView) view.findViewById(R.id.imageViewBOk);
+        cancelImg = (ImageView) view.findViewById(R.id.imageViewBCancel);
 
         mEditText.requestFocus();
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
-        okButton.setOnClickListener(new View.OnClickListener() {
+        okImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), Deadline.class));
             }
         });
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+        cancelImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();

@@ -19,18 +19,17 @@
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" android:weightSum="1">
+
                 <ImageView
-                        android:layout_width="377dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@mipmap/identify"
-                        android:layout_weight="0.05"
-                        android:layout_marginTop="55dp"
-                        android:layout_marginBottom="20dp"
-                        android:adjustViewBounds="false"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"/>
+                    android:layout_width="255dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView"
+                    android:src="@mipmap/identifitacion"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.15"
+                    android:layout_marginTop="140dp"
+                    android:layout_marginBottom="15dp" />
+
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -44,18 +43,7 @@
                         android:autoText="false" android:background="@drawable/rounded_edittext"
                         android:layout_marginBottom="10dp"
                         android:paddingLeft="15dp" android:textColor="#1e8dc4"/>
-                <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberPassword"
-                        android:ems="10"
-                        android:id="@+id/cardPin"
-                        android:layout_weight="0.05" android:hint="Card pin"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="25dp"
-                        android:background="@drawable/rounded_edittext"
-                        android:layout_marginBottom="10dp"
-                        android:paddingLeft="15dp" android:textColor="#e8b12f"/>
+
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -68,7 +56,22 @@
                         android:layout_marginLeft="25dp"
                         android:layout_marginRight="25dp"
                         android:background="@drawable/rounded_edittext"
-                        android:paddingLeft="15dp" android:textColor="#cc5633"/>
+                        android:paddingLeft="15dp" android:textColor="#cc5633"
+                    android:layout_marginBottom="10dp" />
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberPassword"
+                        android:ems="10"
+                        android:id="@+id/cardPin"
+                        android:layout_weight="0.05" android:hint="Card pin"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/rounded_edittext"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="15dp" android:textColor="#e8b12f"/>
+
                 <ImageView
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
@@ -76,7 +79,6 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="0.11"
                         android:background="@mipmap/done"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="25dp"/>
+                    android:layout_marginTop="25dp"/>
         </LinearLayout>
 </RelativeLayout>
