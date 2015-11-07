@@ -40,27 +40,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private SharedPreferences prefs;
 
 
-    private Location getGPS() {
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        List<String> providers = lm.getProviders(true);
-
-        Location l = null;
-        Location aux = null;
-
-        for (int i = providers.size() - 1; i > 0; i--) {
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            }
-            l = lm.getLastKnownLocation(providers.get(i));
-            if (l != null) break;
-        }
-
-        if(l != null){
-            aux = l;
-        }
-        return aux;
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -121,13 +100,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             });
 
             //prova
+            double lat = 41.383169809421;
+            double lng = 2.166856667596462;
 
+            Location location = new Location("");
+            location.setLatitude(lat);
+            location.setLongitude(lng);
 
-
-            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            Criteria criteria = new Criteria();
-
-            Location location = this.getGPS();
 
             //Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
             if (location != null)
@@ -181,7 +160,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office3.getDouble("latitude"), office3.getDouble("longitude")))
                     .title(office3.getString("name")))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcgrocnou));
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.marcblau));
 
             JSONObject office4 = results.getJSONObject(4);
             mMap.addMarker(new MarkerOptions()
