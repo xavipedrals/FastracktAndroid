@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
@@ -54,6 +55,8 @@ public class CountDownActivity extends AppCompatActivity {
     private static final String SERVER_URL_CODE = "http://192.168.10.45:6969/code";
     SharedPreferences prefs;
 
+    private boolean run = true;
+    private boolean toasted = false;
 
 
     public String paddedText(long v) {
@@ -94,6 +97,14 @@ public class CountDownActivity extends AppCompatActivity {
         t.start();
     }
 
+
+    private void mostraToast(String txt) {
+        Toast toast = Toast.makeText(getApplicationContext(),
+                txt,
+                Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,20 +125,43 @@ public class CountDownActivity extends AppCompatActivity {
         buttonSimulate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                run = false;
                 sendJson("{ \"code\": \"" + code + "\" }");
             }
         });
 
-        new CountDownTimer(5*60*1000, 1000) {//CountDownTimer(edittext1.getText()+edittext2.getText()) also parse it to long
+        String bankLat= prefs.getString("lastBankLat", "0");
+        Log.d("ASD", bankLat);
+        String bankLong = prefs.getString("lastBankLng", "0");
+
+        long time;
+        if(bankLat.equals("41.37959")) time = (5+1);
+        else if(bankLat.equals("41.38443")) time = 8+1;
+        else if(bankLat.equals("41.38545")) time = 10+1;
+        else if(bankLat.equals("41.38189")) time = 8+1;
+        else if(bankLat.equals("41.38553")) time = 10+1;
+        else if(bankLat.equals("41.39111")) time = 19+1;
+        else if(bankLat.equals("41.39895")) time = 35+1;
+        else time = 1;
+
+        new CountDownTimer(time*60*1000, 1000) {//CountDownTimer(edittext1.getText()+edittext2.getText()) also parse it to long
 
             public void onTick(long millisUntilFinished) {
-                int k = (int) millisUntilFinished;
-                Log.i("Millis", "" + millisUntilFinished);
-                Log.i("Progress", "" + k/(5*60*10));
+                if (run) {
+                    int k = (int) millisUntilFinished;
+                    Log.i("Millis", "" + millisUntilFinished);
+                    Log.i("Progress", "" + k / (5 * 60 * 10));
 
-                progress.setProgress((k/(5*60*10)));
-                minutes.setText(paddedText(millisUntilFinished / (60 * 1000)));
-                seconds.setText(paddedText(millisUntilFinished / (1000) % 60));
+                    progress.setProgress((k / (5 * 60 * 10)));
+                    minutes.setText(paddedText(millisUntilFinished / (60 * 1000)));
+                    seconds.setText(paddedText(millisUntilFinished / (1000) % 60));
+                }
+                else {
+                    if(!toasted) {
+                        mostraToast("Code Correct!!");
+                        toasted = true;
+                    }
+                }
             }
 
             public void onFinish() {
