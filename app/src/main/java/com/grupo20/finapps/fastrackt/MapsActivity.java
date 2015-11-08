@@ -6,11 +6,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -30,16 +26,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, JSONTransmitter.OnJsonTransmitionCompleted {
 
     private GoogleMap mMap;
-    private Marker myMarker;
-    private Fragment f;
     private SharedPreferences prefs;
 
 
+    //tema permisos només afecta a Android 6, per versions anteriors has de borrar aquesta funcio i totes les seves crides
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -107,11 +101,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             location.setLatitude(lat);
             location.setLongitude(lng);
 
-
+            //Android te un bug al executar la linia de codi comentada aqui sota, pot donar localització = null
             //Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
             if (location != null)
             {
-                Log.d("XAVI", "Hola");
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                         new LatLng(location.getLatitude(), location.getLongitude()), 13));
 
@@ -136,7 +129,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try {
             JSONArray results = jsonObject.getJSONArray("results");
             JSONObject office0 = results.getJSONObject(0);
-            Log.d("MAPS", office0.toString());
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(office0.getDouble("latitude"), office0.getDouble("longitude")))
                     .title(office0.getString("name")))

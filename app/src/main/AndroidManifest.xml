@@ -68,12 +68,6 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".Deadline"
-            android:label="@string/title_activity_deadline"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".CountDownActivity"
             android:label="@string/title_activity_count_down"
             android:theme="@style/AppTheme.NoActionBar"

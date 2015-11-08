@@ -49,10 +49,6 @@ public class DialogImport extends DialogFragment {
         // Empty constructor required for DialogFragment
     }
 
-    public boolean isValidWord(String w) {
-        return w.matches("[A-Za-z]*");
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_import, container);
